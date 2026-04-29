@@ -60,8 +60,8 @@ void Comunicaciones::ConexionAutomatica(const char* wsHost, uint16_t wsPort, con
         _conectarWiFi();
     }
     
-    // --- CORRECCIÓN: WebSocket seguro sin cliente externo ---
-  _webSocket.begin(_wsHost, _wsPort, _wsPath);
+    // --- CAMBIO A WSS: Se usa beginSSL en lugar de begin ---
+    _webSocket.beginSSL(_wsHost, _wsPort, _wsPath);
     _webSocket.onEvent([this](WStype_t type, uint8_t* payload, size_t length) {
         this->_webSocketEvent(type, payload, length);
     });
@@ -90,17 +90,12 @@ void Comunicaciones::IngresarRedWifiManualmente() {
         }
         delay(100);
     }
-    
-    Serial.print("Red guardada: ");
-    Serial.println(_manualSSID);
-    Serial.print("Contraseña guardada: ");
-    Serial.println(_manualPassword);
 }
 
 void Comunicaciones::conectar() {
     _conectarWiFi();
-    // --- CORRECCIÓN: WebSocket seguro sin cliente externo ---
- _webSocket.begin(_wsHost, _wsPort, _wsPath);
+    // --- CAMBIO A WSS: Se usa beginSSL en lugar de begin ---
+    _webSocket.beginSSL(_wsHost, _wsPort, _wsPath);
     _webSocket.onEvent([this](WStype_t type, uint8_t* payload, size_t length) {
         this->_webSocketEvent(type, payload, length);
     });
@@ -131,10 +126,6 @@ bool Comunicaciones::wifiConectado() {
 bool Comunicaciones::webSocketConectado() {
     return _wsConectado;
 }
-
-// -------------------------------------------------------------
-// Métodos privados
-// -------------------------------------------------------------
 
 void Comunicaciones::_conectarWiFi() {
     if (_ssid == nullptr || _password == nullptr) {
@@ -169,7 +160,7 @@ void Comunicaciones::_webSocketEvent(WStype_t type, uint8_t* payload, size_t len
             _wsConectado = false;
             break;
         case WStype_CONNECTED:
-            Serial.println("[WebSocket] Conectado al servidor");
+            Serial.println("[WebSocket] Conectado al servidor (Secure)");
             _wsConectado = true;
             break;
         case WStype_TEXT:
@@ -182,9 +173,10 @@ void Comunicaciones::_webSocketEvent(WStype_t type, uint8_t* payload, size_t len
             }
             break;
         case WStype_ERROR:
-            Serial.println("[WebSocket] Error de conexión");
+            Serial.println("[WebSocket] Error de conexión SSL");
             _wsConectado = false;
             break;
         default:
             break;
-    } }
+    }
+}
