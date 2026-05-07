@@ -31,3 +31,4 @@ class actuador {
     int getBaseDeTiempo() { return _baseDeTiempo; }
     String getTipo() { return _tipo; }
 };
+#endif // TERMOCUPLA_H
