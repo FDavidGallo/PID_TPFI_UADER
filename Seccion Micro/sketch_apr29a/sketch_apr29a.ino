@@ -1,27 +1,28 @@
-
 #include <WiFi.h>
 #include <WebSocketsClient.h>
 #include "Headers.h"
 
-// ==================== DEFINICIÓN DE PINES ====================
+// ==================== DEFINICIÓN DE PINES (ESP32) ====================
 #define PIN_THERMO_SO   19
 #define PIN_THERMO_CS   23
 #define PIN_THERMO_SCK  5
-#define PIN_POTENCIOMETRO  34
+#define PIN_POTENCIOMETRO  34   // ADC1, solo entrada
 #define PIN_RELE         13
 #define PIN_TRANSISTOR   12
-#define PIN_NIVEL        "A0"
-#define NIVEL_MIN_mV     1750
-#define NIVEL_MAX_mV     2700
+#define PIN_NIVEL        39
+
+// Rangos del sensor de nivel (VALORES RAW DEL ADC, 0-4095)
+#define NIVEL_MIN_RAW   800   // umbral inferior (por debajo → nivel bajo)
+#define NIVEL_MAX_RAW   3300   // umbral superior (por encima → nivel alto)
 
 // ==================== PARÁMETROS POR DEFECTO ====================
 float SETPOINT_DEFAULT = 25.0;
 float KP_DEFAULT = 10.0;
 float KI_DEFAULT = 0.5;
 float KD_DEFAULT = 1.0;
-double tiempoMuestreo = 1.0;           // T modificable (1 a 10 segundos)
-int BASE_TIEMPO_RELE_DEFAULT = 100;
-int BASE_TIEMPO_TRANSISTOR_DEFAULT = 1000;
+double tiempoMuestreo = 1.0;           // segundos (1..10)
+int BASE_TIEMPO_RELE_DEFAULT = 100;     // ms
+int BASE_TIEMPO_TRANSISTOR_DEFAULT = 1000; // µs
 
 // ==================== OBJETOS GLOBALES ====================
 Comunicaciones comunica;
@@ -34,7 +35,7 @@ actuador* actuadorActivo = nullptr;
 Control* control = nullptr;
 SensorDeNivel* sensorNivel = nullptr;
 
-bool nivelSeguro = true;
+bool nivelSeguro = false;          // se establecerá realmente en setup()
 unsigned long tiempoUltimoControl = 0;
 float setpoint = SETPOINT_DEFAULT;
 float ultimaTemperatura = 0.0;
@@ -49,24 +50,37 @@ void verificarNivelYSeguridad();
 void loopControl();
 void enviarTelemetria();
 void alRecibirMensaje(String mensaje);
-void recrearControl();   // nueva función para reconstruir PID con el T actual
+void recrearControl();
 
 // ==================== SETUP ====================
 void setup() {
     Serial.begin(115200);
     delay(1000);
-    Serial.println("\n===== SISTEMA DE CONTROL PID CON ARDUINO =====");
-    Serial.println("[INFO] Tiempo de muestreo inicial: 1 segundo (use comando ts:5 para cambiar)");
+    Serial.println("\n===== SISTEMA DE CONTROL PID CON ESP32 =====");
+    Serial.println("[INFO] Tiempo de muestreo inicial: 1 segundo (use comando ts:5)");
 
-    // Sensor de nivel
-    sensorNivel = SensorDeNivel::crear(NIVEL_MIN_mV, NIVEL_MAX_mV, PIN_NIVEL);
+    analogReadResolution(12);
+    analogSetAttenuation(ADC_11db);
+
+    // ---------- Sensor de nivel ----------
+    sensorNivel = SensorDeNivel::crear(NIVEL_MIN_RAW, NIVEL_MAX_RAW, PIN_NIVEL);
     if (sensorNivel == nullptr) {
         Serial.println("ERROR CRÍTICO: SensorDeNivel. Reinicie.");
         while (1) delay(1000);
     }
     sensorNivel->Iniciar();
 
-    // Sensores de temperatura
+    // Lee el estado real del nivel al inicio y configura la seguridad
+    int estadoInicial = sensorNivel->ChequearNivel();
+    nivelSeguro = (estadoInicial == 0);
+    if (!nivelSeguro) {
+        Serial.println("[NIVEL] Inicialmente inseguro → salida forzada a 0");
+        if (control) control->ForzarSalida(true, 0.0);
+    } else {
+        Serial.println("[NIVEL] Inicialmente seguro");
+    }
+
+    // ---------- Sensores de temperatura ----------
     termocupla = new Termocupla(PIN_THERMO_SO, PIN_THERMO_CS, PIN_THERMO_SCK);
     potenciometro = new PotenciometroTemp(PIN_POTENCIOMETRO, -10.0, 120.0, 3.3, 4096);
     termocupla->Inciar();
@@ -74,16 +88,18 @@ void setup() {
     sensorActivo = termocupla;
     Serial.println("[INFO] Sensor activo: termocupla");
 
-    // Actuadores
+    // ---------- Actuadores ----------
     rele = new Rele(PIN_RELE, BASE_TIEMPO_RELE_DEFAULT, "rele");
     transistor = new Transistor(PIN_TRANSISTOR, BASE_TIEMPO_TRANSISTOR_DEFAULT, "transistor");
     actuadorActivo = rele;
     Serial.println("[INFO] Actuador activo: rele");
 
-    // Controlador (se crea con el tiempo de muestreo actual)
+    // ---------- Controlador PID ----------
     recrearControl();
+    // Si el nivel ya era inseguro, forzamos la salida después de crear el control
+    if (!nivelSeguro && control) control->ForzarSalida(true, 0.0);
 
-    // Comunicaciones
+    // ---------- Comunicaciones WebSocket (WSS) ----------
     const char* WS_HOST = "trabajofinalintegradoruader.hostlocal.app";
     const uint16_t WS_PORT = 443;
     const char* WS_PATH = "/pepe";
@@ -107,9 +123,10 @@ void loop() {
         if (cmd.length() > 0) procesarComando(cmd);
     }
 
+    // Verificar el nivel de líquido periódicamente
     verificarNivelYSeguridad();
 
-    // El intervalo se calcula dinámicamente con tiempoMuestreo (en segundos)
+    // Control por tiempo de muestreo variable
     unsigned long intervaloMs = (unsigned long)(tiempoMuestreo * 1000);
     if (millis() - tiempoUltimoControl >= intervaloMs) {
         loopControl();
@@ -165,11 +182,11 @@ void procesarComando(String cmd) {
             recrearControl();
         } else { Serial.println("ERROR: Kd 0..100"); }
     }
-    else if (cmd.startsWith("ts:")) {         // NUEVO: cambiar tiempo de muestreo
+    else if (cmd.startsWith("ts:")) {
         float val = cmd.substring(3).toFloat();
         if (val >= 1.0 && val <= 10.0) {
             tiempoMuestreo = val;
-            recrearControl();                 // Recrea PID con el nuevo Ts
+            recrearControl();
             Serial.printf("Tiempo de muestreo cambiado a %.1f segundos\n", tiempoMuestreo);
         } else { Serial.println("ERROR: T debe estar entre 1 y 10 segundos"); }
     }
@@ -213,17 +230,19 @@ void actualizarActuadorInactivo() {
     else if (actuadorActivo == transistor && rele) rele->Aplicar(0);
 }
 
+// ==================== VERIFICACIÓN DE NIVEL (VERSIÓN SIMPLIFICADA) ====================
 void verificarNivelYSeguridad() {
-    if (!sensorNivel) return;
     int estado = sensorNivel->ChequearNivel();
-    bool nivelActualSeguro = (estado == 0);
+    bool nivelActualSeguro = (estado == 0);   // 0 = dentro del rango, seguro
+
+    // Transición de seguro a inseguro
     if (!nivelActualSeguro && nivelSeguro) {
-        Serial.println("¡ALERTA! NIVEL BAJO - Actuadores parados.");
-        control->ForzarSalida(true, 0.0);
+        if (control) control->ForzarSalida(true, 0.0);
         nivelSeguro = false;
-    } else if (nivelActualSeguro && !nivelSeguro) {
-        Serial.println("Nivel OK - Reanudando control.");
-        control->ForzarSalida(false, 0.0);
+    }
+    // Transición de inseguro a seguro
+    else if (nivelActualSeguro && !nivelSeguro) {
+        if (control) control->ForzarSalida(false, 0.0);
         nivelSeguro = true;
     }
 }
@@ -239,6 +258,7 @@ void loopControl() {
     if (salida > 100) salida = 100;
     ultimaSalida = (float)salida;
 
+    // Aplicar según estado de seguridad
     if (nivelSeguro)
         actuadorActivo->Aplicar((int)salida);
     else
@@ -247,7 +267,7 @@ void loopControl() {
     actualizarActuadorInactivo();
 
     Serial.printf("T=%.1fs | Temp: %.2f | Set: %.2f | Salida: %.1f%% | Nivel: %s\n",
-                  tiempoMuestreo, temp, setpoint, salida, nivelSeguro ? "OK" : "BAJO");
+                  tiempoMuestreo, temp, setpoint, salida, nivelSeguro ? "OK" : "INACEPTABLE");
 }
 
 void enviarTelemetria() {
