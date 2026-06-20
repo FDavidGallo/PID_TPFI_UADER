@@ -1,5 +1,5 @@
 #include "PotenciometroTemp.h"
-
+#include <Arduino.h>
 PotenciometroTemp::PotenciometroTemp(uint8_t adcPin, float minima, float maxima,
                                      float voltajeRef, int bitsADC)
     : pinADC(adcPin), tempMin(minima), tempMax(maxima),

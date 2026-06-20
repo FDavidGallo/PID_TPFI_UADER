@@ -1,19 +1,20 @@
 // headers.h - Incluye todos los headers del proyecto
 
 #ifndef HEADERS_H
+#ifndef HEADERS_H
 #define HEADERS_H
-
-// Incluir todos los archivos .h
+#include <Arduino.h>
 #include "Actuador.h"
 #include "Comunicaciones.h"
 #include "Contrasenha.h"
 #include "Control.h"
 #include "PotenciometroTemp.h"
-#include "rele.h"
-#include "SensorDeNivel.h"      // después de renombrar
+#include "rele.h"          // coso
+#include "SensorDeNivel.h"
 #include "SensorDeTemperatura.h"
 #include "Termocupla.h"
-#include "transistor.h"          // después de renombrar
+#include "transistor.h"    //
+#endif
 
 // Si hay más headers, agrégalos aquí
 

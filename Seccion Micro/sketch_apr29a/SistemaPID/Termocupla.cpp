@@ -1,5 +1,5 @@
 #include "Termocupla.h"
-
+#include <Arduino.h>
 Termocupla::Termocupla(int soPin, int csPin, int sckPin)
     : pinSO(soPin), pinCS(csPin), pinSCK(sckPin),
       thermocouple(sckPin, csPin, soPin)   // orden esperado por la librería: SCK, CS, SO

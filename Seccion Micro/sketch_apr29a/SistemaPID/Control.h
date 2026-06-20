@@ -1,7 +1,7 @@
 #ifndef CONTROL_H
 #define CONTROL_H
 
-#include <iostream>   // para std::cerr (solo para el mensaje de error)
+#include <Arduino.h>   // para Serial
 
 // --------------------------------------------------------------
 // Clase PID discreto (forma posicional)
@@ -17,6 +17,11 @@ public:
     PIDDiscreto(double kp, double ki, double kd, double ts);
     void Reset();
     double Calcular(double error);
+    // Métodos para modificar parámetros
+    void setKp(double kp) { Kp = kp; }
+    void setKi(double ki) { Ki = ki; }
+    void setKd(double kd) { Kd = kd; }
+    void setTs(double ts) { Ts = ts; }
 };
 
 // --------------------------------------------------------------
@@ -31,6 +36,7 @@ public:
     ControlBinario(double anchoBanda);
     void Reset();
     double Calcular(double setpoint, double medicion);
+    void setAnchoBanda(double ancho) { anchoBanda = ancho; }
 };
 
 // --------------------------------------------------------------
@@ -44,26 +50,32 @@ private:
     bool banderaPID;
     bool banderaOnOff;
 
-    // Nuevas variables para salida forzada
     bool flagSalidaForzada;
-    double valorSalidaForzada;   // debe estar en [0, 100]
+    double valorSalidaForzada;   // [0, 100]
 
 public:
     Control(double kp, double ki, double kd, double ts,
             double anchoHisteresis,
             bool habilitarPID, bool habilitarOnOff);
 
-    void SetBanderaPID(bool estado);
-    void SetBanderaOnOff(bool estado);
-    bool GetBanderaPID() const;
-    bool GetBanderaOnOff() const;
+    // Métodos para modificar parámetros del PID
+    void setKp(double kp);
+    void setKi(double ki);
+    void setKd(double kd);
+    void setTs(double ts);          // cambia Ts y resetea el PID
+    void setHisteresis(double ancho); // cambia el ancho de banda del ON‑OFF
+
+    // Métodos para cambiar modo
+    void setModo(bool pidOn, bool onOffOn);
+    void setBanderaPID(bool estado);
+    void setBanderaOnOff(bool estado);
+    bool getBanderaPID() const;
+    bool getBanderaOnOff() const;
 
     void Reset();
 
-    // Nuevo método: activa/desactiva la salida forzada y establece el valor
     void ForzarSalida(bool forzar, double valor);
 
-    // Calcula el error y la salida (tiene en cuenta la salida forzada si está activa)
     double CalcularError(double setpoint, double medicion);
 };
 

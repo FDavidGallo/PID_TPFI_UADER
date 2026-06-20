@@ -1,16 +1,14 @@
 #include "SensorDeNivel.h"
-
-SensorDeNivel::SensorDeNivel(int minRaw, int maxRaw, uint8_t pin)
+#include <Arduino.h>
+SensorDeNivel::SensorDeNivel(int minRaw, int maxRaw, int pin)
     : _minRaw(minRaw), _maxRaw(maxRaw), _pin(pin), _inicializado(false) {}
 
-SensorDeNivel* SensorDeNivel::crear(int minRaw, int maxRaw, uint8_t pin) {
+SensorDeNivel* SensorDeNivel::crear(int minRaw, int maxRaw, int pin) {
     return new SensorDeNivel(minRaw, maxRaw, pin);
 }
 
 void SensorDeNivel::Iniciar() {
     pinMode(_pin, INPUT);
-    analogSetAttenuation(ADC_11db);
-    delay(100);
     int test = analogRead(_pin);
     if (test < 0 || test > 4095) {
         _inicializado = false;

@@ -50,19 +50,46 @@ Control::Control(double kp, double ki, double kd, double ts,
       valorSalidaForzada(0.0)
 {}
 
-void Control::SetBanderaPID(bool estado) {
+void Control::setKp(double kp) {
+    pid.setKp(kp);
+}
+
+void Control::setKi(double ki) {
+    pid.setKi(ki);
+}
+
+void Control::setKd(double kd) {
+    pid.setKd(kd);
+}
+
+void Control::setTs(double ts) {
+    pid.setTs(ts);
+    pid.Reset();   // reiniciamos el acumulador y derivador
+}
+
+void Control::setHisteresis(double ancho) {
+    binario.setAnchoBanda(ancho);
+}
+
+void Control::setModo(bool pidOn, bool onOffOn) {
+    banderaPID = pidOn;
+    banderaOnOff = onOffOn;
+    Reset(); // opcional: reiniciar estados internos
+}
+
+void Control::setBanderaPID(bool estado) {
     banderaPID = estado;
 }
 
-void Control::SetBanderaOnOff(bool estado) {
+void Control::setBanderaOnOff(bool estado) {
     banderaOnOff = estado;
 }
 
-bool Control::GetBanderaPID() const {
+bool Control::getBanderaPID() const {
     return banderaPID;
 }
 
-bool Control::GetBanderaOnOff() const {
+bool Control::getBanderaOnOff() const {
     return banderaOnOff;
 }
 
@@ -77,18 +104,15 @@ void Control::ForzarSalida(bool forzar, double valor) {
             flagSalidaForzada = true;
             valorSalidaForzada = valor;
         } else {
-            std::cerr << "Error: Valor de salida forzada (" << valor
-                      << ") debe estar entre 0 y 100. No se forza la salida.\n";
-            flagSalidaForzada = false;  // no se fuerza
+            Serial.println("Error: Valor de salida forzada debe estar entre 0 y 100. No se forza.");
+            flagSalidaForzada = false;
         }
     } else {
         flagSalidaForzada = false;
-        // No se modifica valorSalidaForzada, pero ya no se usa
     }
 }
 
 double Control::CalcularError(double setpoint, double medicion) {
-    // Si la salida está forzada, retornar el valor prefijado
     if (flagSalidaForzada) {
         return valorSalidaForzada;
     }

@@ -9,8 +9,8 @@
 
 #ifndef SENSOR_DE_TEMPERATURA_H
 #define SENSOR_DE_TEMPERATURA_H
-
 #include <Arduino.h>
+
 
 /**
  * Clase abstracta que define el CONTRATO que deben cumplir TODOS los sensores
