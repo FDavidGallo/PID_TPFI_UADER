@@ -33,34 +33,8 @@ Permite que docentes y alumnos controlen y visualicen en **tiempo real** —desd
 
 ## 📁 Estructura del repositorio
 
-```
-PID_TPFI_UADER/
-│
-├── 📂 Seccion Micro/          # Firmware ESP32 (Arduino IDE / C++)
-│   ├── Sistema.ino            # Programa principal (Setup + Loop)
-│   ├── Headers.h              # Incluye todas las clases
-│   ├── Contrasenha.h          # ⚠️ NO incluido (.gitignore) — ver abajo
-│   ├── Comunicaciones.h/.cpp  # WiFi + WebSocket seguro
-│   ├── Control.h/.cpp         # Orquesta PID y ON-OFF
-│   ├── PIDDiscreto.h/.cpp     # Controlador PID discreto
-│   ├── ControlBinario.h/.cpp  # Control ON-OFF con histéresis
-│   ├── Actuador.h             # Clase base abstracta (actuadores)
-│   ├── Rele.h/.cpp            # Relé SSR con PWM por tiempo
-│   ├── Transistor.h/.cpp      # Transistor con PWM (ledc ESP32)
-│   ├── SensorDeTemperatura.h  # Clase abstracta (sensores)
-│   ├── Termocupla.h/.cpp      # MAX6675 vía SPI
-│   ├── PotenciometroTemp.h/.cpp # Potenciómetro como sensor simulado
-│   └── SensorDeNivel.h/.cpp   # Sensor de nivel (ADC)
-│
-├── 📂 Seccion Web/            # Flujo Node-RED (Backend + Dashboard)
-│   ├── flow.json              # Flujo exportado de Node-RED
-│   └── Arrancar.bat           # Script para lanzar el servidor fácil
-│
-├── 📂 Documentacion/          # Informe técnico y diagramas
-│
-├── .gitignore
-└── README.md
-```
+<img width="490" height="485" alt="image" src="https://github.com/user-attachments/assets/ff4579f9-262f-4cd2-9038-ecbb4e5a8b7d" />
+
 
 ### ⚠️ `Contrasenha.h` — archivo que debés crear vos
 
