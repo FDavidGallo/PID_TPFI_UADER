@@ -25,16 +25,10 @@ Permite que docentes y alumnos controlen y visualicen en **tiempo real** —desd
 
 > <img width="490" height="485" alt="Captura" src="https://github.com/user-attachments/assets/28350d14-6598-48e2-b1e7-a883c8315433" />
 
-
+---
 ```
 
 > La comunicación es completamente bidireccional. El servidor puede estar en otro país y funciona igual.
-
----
-
-## 📁 Estructura del repositorio
-
-<img width="490" height="485" alt="image" src="https://github.com/user-attachments/assets/ff4579f9-262f-4cd2-9038-ecbb4e5a8b7d" />
 
 
 ### ⚠️ `Contrasenha.h` — archivo que debés crear vos
