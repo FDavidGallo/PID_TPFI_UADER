@@ -23,7 +23,7 @@ Permite que docentes y alumnos controlen y visualicen en **tiempo real** —desd
 
 ## 🏗️ Arquitectura general
 
-<img width="2048" height="512" alt="Gemini_Generated_Image_lrgoqlrgoqlrgoql" src="https://github.com/user-attachments/assets/e4781a48-a8eb-423a-9227-6ffd657164d0" />
+> <img width="2048" height="512" alt="Gemini_Generated_Image_lrgoqlrgoqlrgoql" src="https://github.com/user-attachments/assets/e4781a48-a8eb-423a-9227-6ffd657164d0" />
 
 ```
 
