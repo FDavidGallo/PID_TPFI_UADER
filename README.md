@@ -26,12 +26,13 @@ Permite que docentes y alumnos controlen y visualicen en **tiempo real** —desd
 > <img width="490" height="485" alt="Captura" src="https://github.com/user-attachments/assets/28350d14-6598-48e2-b1e7-a883c8315433" />
 
 ---
+
 ```
 
 > La comunicación es completamente bidireccional. El servidor puede estar en otro país y funciona igual.
+```
 
-
-### ⚠️ `Contrasenha.h` — archivo que debés crear vos
+### ⚠️ `Contrasenha.h` 
 
 Este archivo **no está en el repo** (está en `.gitignore`) porque contiene credenciales WiFi que algún vecino podría querer.
 Crealo en `Seccion Micro/` con esta estructura:
