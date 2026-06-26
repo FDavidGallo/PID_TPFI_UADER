@@ -1,12 +1,13 @@
-# 🌡️ Control PID para la Enseñanza — IoT con ESP32 + Node-RED
+# 🌡️ Control PID para  Enseñanza 
 
-> **Trabajo Práctico Final · Proyecto de Sistemas Digitales · UADER FCyT 2026**
->
+> **Trabajo Práctico Final · Proyecto de Sistemas Digitales · UADER FCyT 2026*
+
 > *Licenciatura en Automatización y Control de Procesos Industriales*
 
 **Autores:** Suffo Emanuel · Gallo Fabricio David
 **Profesores:** Ing. Eduardo Velázquez · Ing Guillermo Gerard
 
+> <img width="135" height="45" alt="logo (5)" src="https://github.com/user-attachments/assets/dddc2f87-ea36-4421-aa79-d720b334455c" />
 [![C++](https://img.shields.io/badge/C++-ESP32%20Arduino-00599C?style=flat&logo=cplusplus)](https://www.arduino.cc/)
 [![Node-RED](https://img.shields.io/badge/Node--RED-v4.1.10-8F0000?style=flat&logo=nodered)](https://nodered.org/)
 [![WebSocket](https://img.shields.io/badge/Comunicación-WebSocket%20Seguro-4CAF50?style=flat)](https://websockets.spec.whatwg.org/)
@@ -17,7 +18,7 @@
 ## 🎯 ¿Qué es esto?
 
 Un sistema **Un calentador de agua con control PID**, diseñado con fines pedagógicos.
-Permite que docentes y alumnos controlen y visualicen en **tiempo real** —desde el teléfono o la PC— las variables de un lazo de control PID: setpoint, ganancias Kp/Ki/Kd, temperatura medida y salida del actuador.
+Permite que docentes y alumnos controlen y visualicen en **tiempo real** —desde el teléfono o la PC— las variables de un lazo de control PID.
 
 
 ## 🏗️ Arquitectura general
