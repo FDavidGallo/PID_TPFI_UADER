@@ -23,26 +23,8 @@ Permite que docentes y alumnos controlen y visualicen en **tiempo real** —desd
 
 ## 🏗️ Arquitectura general
 
-```mermaid
-graph LR
-    subgraph 🏭 Planta Local
-        HW["⚙️ Sensores & Actuadores\n(Termocupla · Potenciómetro\nRelé SSR · Transistor)"]
-        ESP["🤖 ESPDuino ESP32\n(D1 R32)"]
-        HW <--> ESP
-    end
+<img width="2048" height="512" alt="Gemini_Generated_Image_lrgoqlrgoqlrgoql" src="https://github.com/user-attachments/assets/e4781a48-a8eb-423a-9227-6ffd657164d0" />
 
-    subgraph ☁️ Servidor
-        PAN["🦔 Pangolin\nProxy Inverso + WireGuard"]
-        NR["🔴 Node-RED\nBackend + Dashboard"]
-        PAN <--> NR
-    end
-
-    subgraph 📱 Usuario
-        UI["🌐 Dashboard Web\n(PC / Celular)"]
-    end
-
-    ESP <-->|"WSS (WebSocket Seguro)"| PAN
-    NR <-->|"HTTP + WebSocket"| UI
 ```
 
 > La comunicación es completamente bidireccional. El servidor puede estar en otro país y funciona igual.
@@ -82,7 +64,7 @@ PID_TPFI_UADER/
 
 ### ⚠️ `Contrasenha.h` — archivo que debés crear vos
 
-Este archivo **no está en el repo** (está en `.gitignore`) porque contiene credenciales WiFi.
+Este archivo **no está en el repo** (está en `.gitignore`) porque contiene credenciales WiFi que algún vecino podría querer.
 Crealo en `Seccion Micro/` con esta estructura:
 
 ```cpp
@@ -98,81 +80,6 @@ Crealo en `Seccion Micro/` con esta estructura:
 
 ---
 
-## 🧱 Diagrama de clases (simplificado)
-
-```mermaid
-classDiagram
-    class SensorDeTemperatura {
-        <<abstract>>
-        +Iniciar()
-        +LeerTemperatura() float
-        +EstaAndado() bool
-        +ObtenerTipoDeSensor() String
-    }
-    class Termocupla {
-        -pinSO, pinCS, pinSCK
-        -MAX6675 thermocouple
-    }
-    class PotenciometroTemp {
-        -pinADC
-        -tempMin, tempMax
-    }
-    class Actuador {
-        <<abstract>>
-        +Aplicar(valor)
-        +getTipo() String
-    }
-    class Rele {
-        -pin, periodoMs
-        +loop()
-        +setPeriodo()
-    }
-    class Transistor {
-        -pin, frecuencia
-        +setFrecuencia()
-    }
-    class Control {
-        -PIDDiscreto pid
-        -ControlBinario binario
-        +CalcularError()
-        +setModo()
-        +ForzarSalida()
-    }
-    class Comunicaciones {
-        -WebSocketsClient
-        +begin()
-        +loop()
-        +enviarMensaje()
-    }
-
-    SensorDeTemperatura <|-- Termocupla
-    SensorDeTemperatura <|-- PotenciometroTemp
-    Actuador <|-- Rele
-    Actuador <|-- Transistor
-    Control *-- PIDDiscreto
-    Control *-- ControlBinario
-```
-
----
-
-## 🔄 Flujo del programa (resumido)
-
-```mermaid
-flowchart TD
-    A([🟢 Inicio]) --> B[⚙️ Setup\nInicializar sensores,\nactuadores y WebSocket]
-    B --> C[[🔁 Loop Principal]]
-
-    C --> D[📡 Procesar WebSocket\ny Serial]
-    D --> E[🛡️ Verificar\nNivel de Agua]
-    E --> F{⏱️ ¿Tiempo de\nMuestreo?}
-
-    F -- No --> C
-    F -- Sí --> G[🌡️ Leer Temperatura\nSensorActivo]
-    G --> H[🧮 Calcular Salida\nPID o ON-OFF]
-    H --> I[⚡ Aplicar al\nActuadorActivo]
-    I --> J[📤 Enviar Telemetría\nJSON por WebSocket]
-    J --> C
-```
 
 > El programa opera en **modo Polling** con tiempo de muestreo configurable.  
 > Esto es intencional: refuerza el carácter **digital y discreto** del control (fines pedagógicos).
