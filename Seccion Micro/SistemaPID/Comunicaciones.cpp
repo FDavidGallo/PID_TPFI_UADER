@@ -28,7 +28,7 @@ void Comunicaciones::begin(const char* wsHost, uint16_t wsPort, const char* wsPa
     _webSocket.onEvent([this](WStype_t type, uint8_t* payload, size_t length) {
         this->_webSocketEvent(type, payload, length);
     });
-    _webSocket.setReconnectInterval(5000);
+    _webSocket.setReconnectInterval(4000);
     Serial.println("[Comunicaciones] WebSocket inicializado (SSL)");
 }
 

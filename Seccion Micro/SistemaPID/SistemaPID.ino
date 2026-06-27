@@ -74,7 +74,7 @@ void verificarNivelYSeguridad();
 void loopControl();
 void enviarTelemetria();
 void alRecibirMensaje(String mensaje);
-void recrearControl(); // ya no se usa para cambiar parámetros, solo para inicial
+//void recrearControl(); // ya no se usa para cambiar parámetros, solo para inicial
 
 // ==================== SETUP ====================
 void setup() {
@@ -276,6 +276,17 @@ void procesarComando(String cmd) {
     } else {
       Serial.println("ERROR: usa onoff:on o onoff:off");
     }
+    //---- HABIA FALTADO ESTO e.e, es para configurar la histeris
+    }else if (cmd.startsWith("hist:")) {
+    int HISTE = cmd.substring(5).toInt();
+    if (HISTE >= 1 && HISTE < 10) {
+        control->setHisteresis(HISTE);
+        Serial.printf("Histerisis seteada en %d HISTE\n", HISTE);
+      } 
+     else {
+      Serial.println("ERROR: FUERA DE RANGO");
+    }
+    // ---
   } else {
     Serial.println("Comandos: setpoint:XX, kp:X, ki:X, kd:X, ts:1..10, sensor:termocupla|poten, actuador:rele|transistor, baseTiempoRele:ms, frecuenciaTransistor:Hz, onoff:on|off");
   }
@@ -287,11 +298,13 @@ void actualizarActuadorInactivo() { // Para que no haya dos actuadores al mismo 
 }
 
 // ==================== VERIFICACIÓN DE NIVEL ====================
-void verificarNivelYSeguridad() {
+void verificarNivelYSeguridad() { // che si no hay agua no calentés
   int estado = sensorNivel->ChequearNivel();
   bool nivelActualSeguro = (estado == 0);
 
-  if (!nivelActualSeguro && nivelSeguro) {
+  if (!nivelActualSeguro && nivelSeguro) { // por las dudas comparamos si el nivel
+                                           // anterior y el actual son seguros; esto es 
+                                           // porque por ahi quedan gotas, dando lugar a una mala medida
     if (control) control->ForzarSalida(true, 0.0);
     nivelSeguro = false;
   } else if (nivelActualSeguro && !nivelSeguro) {
@@ -360,11 +373,11 @@ void enviarTelemetria() {
   }
 
   msg += "}";
-  comunica.enviarMensaje(msg);
+  comunica.enviarMensaje(msg); // Lo manda
 }
 //=========Al recibir un mensaje de websocket==========
-void alRecibirMensaje(String mensaje) {
-  Serial.print("[WSS] ");
-  Serial.println(mensaje);
-  procesarComando(mensaje);
+void alRecibirMensaje(String mensaje) { 
+  Serial.print("[WSS] "); // lo recivió por websocket
+  Serial.println(mensaje); // imprimimos lo que llegó
+  procesarComando(mensaje); // procesamos lo que llegó
 }

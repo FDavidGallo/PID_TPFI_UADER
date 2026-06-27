@@ -27,9 +27,9 @@ float Termocupla::LeerTemperatura() {
 
 bool Termocupla::EstaAndado() {
      float temp = thermocouple.readCelsius();
-    // Si la lectura no es un número válido, se retorna -999.0 (error)
+    // Si la lectura no es un número válido, se retorna FALSO
     if (isnan(temp)) {
-        return -999.0;
+        return false;
     }
     if(temp>= -20.0 && temp <= 1200.0) {
         return true;

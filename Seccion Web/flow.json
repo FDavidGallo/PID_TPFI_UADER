@@ -8,243 +8,6 @@
         "env": []
     },
     {
-        "id": "2b5674be063c45cc",
-        "type": "websocket-listener",
-        "path": "/pepe",
-        "wholemsg": "false"
-    },
-    {
-        "id": "b1621ce7ad4c9a13",
-        "type": "ui_tab",
-        "name": "Control",
-        "icon": "dashboard",
-        "order": 1,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "2d54b16bc1fdd21c",
-        "type": "ui_tab",
-        "name": "Control Fino",
-        "icon": "dashboard",
-        "order": 3,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "582906419b7b7ace",
-        "type": "ui_tab",
-        "name": "Solo gráficas",
-        "icon": "dashboard",
-        "order": 4,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "f030963f7147df36",
-        "type": "global-config",
-        "env": [],
-        "modules": {
-            "node-red-dashboard": "3.6.6",
-            "@studiobox/node-red-contrib-ui-widget-thermometer": "0.7.7",
-            "node-red-contrib-ui-multistate-switch": "1.2.3"
-        }
-    },
-    {
-        "id": "b5253ba5469cbac5",
-        "type": "ui_group",
-        "name": "Parámetros",
-        "tab": "b1621ce7ad4c9a13",
-        "order": 3,
-        "disp": false,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "2337440e676662b7",
-        "type": "ui_group",
-        "name": "Configurar",
-        "tab": "2d54b16bc1fdd21c",
-        "order": 1,
-        "disp": true,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "c9149d1e66f772f4",
-        "type": "ui_group",
-        "name": "Estado",
-        "tab": "b1621ce7ad4c9a13",
-        "order": 2,
-        "disp": false,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "4c0bed7b14068cd7",
-        "type": "ui_group",
-        "name": "Control",
-        "tab": "b1621ce7ad4c9a13",
-        "order": 2,
-        "disp": false,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "9107930fe226893c",
-        "type": "ui_group",
-        "name": "Gráficas",
-        "tab": "582906419b7b7ace",
-        "order": 1,
-        "disp": false,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "75c50b77e673af98",
-        "type": "ui_group",
-        "name": "Graficas al costado",
-        "tab": "582906419b7b7ace",
-        "order": 2,
-        "disp": false,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "4790fc4eabb03bf3",
-        "type": "ui_group",
-        "name": "Gráficos",
-        "tab": "2d54b16bc1fdd21c",
-        "order": 2,
-        "disp": true,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "417a12287c942f40",
-        "type": "ui_group",
-        "name": "grafico circular",
-        "tab": "2d54b16bc1fdd21c",
-        "order": 3,
-        "disp": false,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "69cfb1630f26dcc3",
-        "type": "ui_spacer",
-        "z": "a71bd259225eb477",
-        "name": "spacer",
-        "group": "9107930fe226893c",
-        "order": 2,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "98395f1a7121a54c",
-        "type": "ui_base",
-        "theme": {
-            "name": "theme-light",
-            "lightTheme": {
-                "default": "#0094CE",
-                "baseColor": "#0094CE",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
-            },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#097479",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
-            },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-            },
-            "themeState": {
-                "base-color": {
-                    "default": "#0094CE",
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#1bbfff",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
-                    "value": "#111111",
-                    "edited": false
-                },
-                "widget-backgroundColor": {
-                    "value": "#0094ce",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "base-font": {
-                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-                }
-            },
-            "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
-                "warn": "red",
-                "background": "grey",
-                "palette": "light"
-            }
-        },
-        "site": {
-            "name": "Node-RED Dashboard",
-            "hideToolbar": "false",
-            "allowSwipe": "false",
-            "lockMenu": "false",
-            "allowTempTheme": "true",
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
         "id": "4248592e2f19e827",
         "type": "function",
         "z": "a71bd259225eb477",
@@ -918,9 +681,9 @@
         "name": "",
         "title": "Temperatura",
         "numColor": 3,
-        "colorTop": "#068cf9",
+        "colorTop": "#f70808",
         "colorMiddle": "#86c440",
-        "colorBottom": "#f44336",
+        "colorBottom": "#3487f4",
         "unit": "°C",
         "scale": "normal",
         "minTemp": 0,
@@ -983,7 +746,7 @@
         "type": "function",
         "z": "a71bd259225eb477",
         "name": "Acomodo",
-        "func": "let jsonStr = msg.payload;\nlet telem;\ntry {\n    telem = JSON.parse(jsonStr);\n} catch(e) {\n    return null; // ignorar líneas que no sean JSON\n}\n\n// Preparar array de 8 salidas (todas null por defecto)\nlet outputs = [null, null, null, null, null, null, null, null];\n\n// Setpoint (salida 0)\nif (telem.setpoint !== undefined) {\n    outputs[0] = { topic: \"Setpoint\", payload: telem.setpoint };\n}\n// Temperatura actual (salida 1)\nif (telem.temperatura !== undefined) {\n    outputs[1] = { topic: \"Temperatura\", payload: telem.temperatura };\n}\n// Porcentaje de salida (salida 2)\nif (telem.salida !== undefined) {\n    outputs[2] = { payload: telem.salida };\n}\n// Modo de control (salida 3)\nif (telem.modo !== undefined) {\n    outputs[3] = { payload: telem.modo };\n}\n// Parámetros PID si existen (salidas 4 a 7)\nif (telem.modo === \"PID\") {\n    if (telem.kp !== undefined) outputs[4] = { payload: telem.kp };\n    else outputs[4] = { payload: \"N/A\" };\n    if (telem.ki !== undefined) outputs[5] = { payload: telem.ki };\n    else outputs[5] = { payload: \"N/A\" };\n    if (telem.kd !== undefined) outputs[6] = { payload: telem.kd };\n    else outputs[6] = { payload: \"N/A\" };\n} else {\n    // Modo ONOFF o MIXTO: no hay PID, mostramos \"N/A\"\n    outputs[4] = { payload: \"N/A\" };\n    outputs[5] = { payload: \"N/A\" };\n    outputs[6] = { payload: \"N/A\" };\n}\n// Tiempo de muestreo (salida 7)\nif (telem.ts !== undefined) {\n    outputs[7] = { payload: telem.ts };\n}\n\nreturn outputs;",
+        "func": "let jsonStr = msg.payload;\nlet telem;\ntry {\n    telem = JSON.parse(jsonStr);\n} catch(e) {\n    return null; // ignorar líneas que no sean JSON\n}\n\n// Preparar array de 8 salidas (todas null por defecto)\nlet outputs = [null, null, null, null, null, null, null, null];\n\n// Setpoint (salida 0)\nif (telem.setpoint !== undefined) {\n    outputs[0] = { topic: \"Setpoint\", payload: telem.setpoint };\n}\n// Temperatura actual (salida 1)\nif (telem.temperatura !== undefined) {\n    outputs[1] = { topic: \"Temperatura\", payload: telem.temperatura };\n}\n// Porcentaje de salida (salida 2)(Actuadores)\nif (telem.salida !== undefined) {\n    outputs[2] = { payload: telem.salida };\n}\n// Modo de control (salida 3)\nif (telem.modo !== undefined) {\n    outputs[3] = { payload: telem.modo };\n}\n// Parámetros PID si existen (salidas 4 a 7)\nif (telem.modo === \"PID\") {\n    if (telem.kp !== undefined) outputs[4] = { payload: telem.kp };\n    else outputs[4] = { payload: \"N/A\" };\n    if (telem.ki !== undefined) outputs[5] = { payload: telem.ki };\n    else outputs[5] = { payload: \"N/A\" };\n    if (telem.kd !== undefined) outputs[6] = { payload: telem.kd };\n    else outputs[6] = { payload: \"N/A\" };\n} else {\n    // Modo ONOFF o MIXTO: no hay PID, mostramos \"N/A\"\n    outputs[4] = { payload: \"N/A\" };\n    outputs[5] = { payload: \"N/A\" };\n    outputs[6] = { payload: \"N/A\" };\n}\n// Tiempo de muestreo (salida 7)\nif (telem.ts !== undefined) {\n    outputs[7] = { payload: telem.ts };\n}\n\nreturn outputs;",
         "outputs": 8,
         "timeout": 0,
         "noerr": 0,
@@ -1562,16 +1325,157 @@
         "width": 0,
         "height": 0,
         "name": "",
-        "label": "Temperatura:",
+        "label": "Temperatura(°C):",
         "format": "{{msg.payload}}",
-        "layout": "row-spread",
+        "layout": "col-center",
         "className": "",
         "style": false,
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 910,
+        "x": 930,
         "y": 100,
         "wires": []
+    },
+    {
+        "id": "69cfb1630f26dcc3",
+        "type": "ui_spacer",
+        "z": "a71bd259225eb477",
+        "name": "spacer",
+        "group": "9107930fe226893c",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b5253ba5469cbac5",
+        "type": "ui_group",
+        "name": "Parámetros",
+        "tab": "b1621ce7ad4c9a13",
+        "order": 3,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2337440e676662b7",
+        "type": "ui_group",
+        "name": "Configurar",
+        "tab": "2d54b16bc1fdd21c",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c9149d1e66f772f4",
+        "type": "ui_group",
+        "name": "Estado",
+        "tab": "b1621ce7ad4c9a13",
+        "order": 2,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4c0bed7b14068cd7",
+        "type": "ui_group",
+        "name": "Control",
+        "tab": "b1621ce7ad4c9a13",
+        "order": 2,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9107930fe226893c",
+        "type": "ui_group",
+        "name": "Gráficas",
+        "tab": "582906419b7b7ace",
+        "order": 1,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "75c50b77e673af98",
+        "type": "ui_group",
+        "name": "Graficas al costado",
+        "tab": "582906419b7b7ace",
+        "order": 2,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4790fc4eabb03bf3",
+        "type": "ui_group",
+        "name": "Gráficos",
+        "tab": "2d54b16bc1fdd21c",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "417a12287c942f40",
+        "type": "ui_group",
+        "name": "grafico circular",
+        "tab": "2d54b16bc1fdd21c",
+        "order": 3,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2b5674be063c45cc",
+        "type": "websocket-listener",
+        "path": "/pepe",
+        "wholemsg": "false"
+    },
+    {
+        "id": "b1621ce7ad4c9a13",
+        "type": "ui_tab",
+        "name": "Control",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "2d54b16bc1fdd21c",
+        "type": "ui_tab",
+        "name": "Control Fino",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "582906419b7b7ace",
+        "type": "ui_tab",
+        "name": "Solo gráficas",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "a915936d7cd536dd",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6",
+            "@studiobox/node-red-contrib-ui-widget-thermometer": "0.7.7",
+            "node-red-contrib-ui-multistate-switch": "1.2.3"
+        }
     }
 ]

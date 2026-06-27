@@ -1,7 +1,6 @@
 // headers.h - Incluye todos los headers del proyecto
 
 #ifndef HEADERS_H
-#ifndef HEADERS_H
 #define HEADERS_H
 #include <Arduino.h>
 #include "Actuador.h"
@@ -18,4 +17,3 @@
 
 
 
-#endif // HEADERS_H

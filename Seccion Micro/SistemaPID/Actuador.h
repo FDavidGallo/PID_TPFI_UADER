@@ -14,7 +14,7 @@ class actuador {
     }
 
     virtual void Aplicar(int valor) {
-      if (valor < 1 || valor > 100) {
+      if (valor < 0 || valor > 100) {
          Serial.println("ERROR: Valor fuera de rango");
         return;
       }

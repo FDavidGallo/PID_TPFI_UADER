@@ -29,10 +29,10 @@ void ControlBinario::Reset() {
 }
 
 double ControlBinario::Calcular(double setpoint, double medicion) {
-    double mitad = anchoBanda / 2.0;
-    if (medicion < setpoint - mitad) {
-        ultimaSalida = 1.0;
-    } else if (medicion > setpoint + mitad) {
+    double Hist=  anchoBanda;
+    if (medicion < setpoint - Hist) {
+        ultimaSalida = 100.0;
+    } else if (medicion > setpoint + Hist) {
         ultimaSalida = 0.0;
     }
     return ultimaSalida;
