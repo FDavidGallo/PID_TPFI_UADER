@@ -8,6 +8,253 @@
         "env": []
     },
     {
+        "id": "2b5674be063c45cc",
+        "type": "websocket-listener",
+        "path": "/pepe",
+        "wholemsg": "false"
+    },
+    {
+        "id": "b1621ce7ad4c9a13",
+        "type": "ui_tab",
+        "name": "Control",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "2d54b16bc1fdd21c",
+        "type": "ui_tab",
+        "name": "Control Fino",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "582906419b7b7ace",
+        "type": "ui_tab",
+        "name": "Solo gráficas",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "a915936d7cd536dd",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6",
+            "@bartbutenaers/node-red-autolayout-sidebar": "0.0.4",
+            "@studiobox/node-red-contrib-ui-widget-thermometer": "0.7.7",
+            "node-red-contrib-ui-multistate-switch": "1.2.3"
+        }
+    },
+    {
+        "id": "b5253ba5469cbac5",
+        "type": "ui_group",
+        "name": "Parámetros",
+        "tab": "b1621ce7ad4c9a13",
+        "order": 3,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2337440e676662b7",
+        "type": "ui_group",
+        "name": "Configurar",
+        "tab": "2d54b16bc1fdd21c",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c9149d1e66f772f4",
+        "type": "ui_group",
+        "name": "Estado",
+        "tab": "b1621ce7ad4c9a13",
+        "order": 2,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4c0bed7b14068cd7",
+        "type": "ui_group",
+        "name": "Control",
+        "tab": "b1621ce7ad4c9a13",
+        "order": 2,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9107930fe226893c",
+        "type": "ui_group",
+        "name": "Gráficas",
+        "tab": "582906419b7b7ace",
+        "order": 1,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "75c50b77e673af98",
+        "type": "ui_group",
+        "name": "Graficas al costado",
+        "tab": "582906419b7b7ace",
+        "order": 2,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4790fc4eabb03bf3",
+        "type": "ui_group",
+        "name": "Gráficos",
+        "tab": "2d54b16bc1fdd21c",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "417a12287c942f40",
+        "type": "ui_group",
+        "name": "grafico circular",
+        "tab": "2d54b16bc1fdd21c",
+        "order": 3,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "69cfb1630f26dcc3",
+        "type": "ui_spacer",
+        "z": "a71bd259225eb477",
+        "name": "spacer",
+        "group": "9107930fe226893c",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "3a690b95fa6f39bb",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "dark"
+            }
+        },
+        "site": {
+            "name": "SISTEMA",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "none",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "ea80aa4d45d00713",
+        "type": "auto_layout_config",
+        "name": "AutoLayout",
+        "algorithm": "dagre_lr",
+        "settings": "{\"dagre_lr\":{\"rankdir\":\"LR\",\"marginx\":20,\"marginy\":20,\"nodesep\":30,\"ranksep\":50},\"dagre_longest_path\":{\"rankdir\":\"LR\",\"marginx\":2,\"marginy\":2,\"ranker\":\"longest-path\",\"nodesep\":2,\"ranksep\":2},\"elkjs_mr_tree\":{\"algorithm\":\"mrtree\",\"childAreaHeight\":4500,\"childAreaWidth\":4500,\"org.eclipse.elk.direction\":\"RIGHT\"},\"elkjs_layered_upwards\":{\"algorithm\":\"org.eclipse.elk.layered\",\"elk.direction\":\"UP\",\"cycleBreaking.strategy\":\"INTERACTIVE\",\"layering.strategy\":\"INTERACTIVE\",\"crossingMinimization.semiInteractive\":true,\"separateConnectedComponents\":true,\"nodePlacement.strategy\":\"NETWORK_SIMPLEX\",\"spacing.nodeNode\":70,\"spacing.nodeNodeBetweenLayers\":25,\"spacing.edgeNode\":25,\"spacing.edgeNodeBetweenLayers\":20,\"spacing.edgeEdge\":20,\"spacing.edgeEdgeBetweenLayers\":15,\"elk.hierarchyHandling\":\"INCLUDE_CHILDREN\",\"elk.layered.spacing.edgeNodeBetweenLayers\":40,\"elk.layered.nodePlacement.bk.fixedAlignment\":\"BALANCED\",\"layering.layerConstraint\":\"FIRST\"},\"elkjs_layered_downwards\":{\"algorithm\":\"org.eclipse.elk.layered\",\"elk.direction\":\"DOWN\",\"cycleBreaking.strategy\":\"INTERACTIVE\",\"layering.strategy\":\"INTERACTIVE\",\"crossingMinimization.semiInteractive\":true,\"separateConnectedComponents\":true,\"nodePlacement.strategy\":\"NETWORK_SIMPLEX\",\"spacing.nodeNode\":70,\"spacing.nodeNodeBetweenLayers\":25,\"spacing.edgeNode\":25,\"spacing.edgeNodeBetweenLayers\":20,\"spacing.edgeEdge\":20,\"spacing.edgeEdgeBetweenLayers\":15},\"elkjs_box\":{\"algorithm\":\"org.eclipse.elk.box\",\"childAreaHeight\":3000,\"childAreaWidth\":3000},\"pull_request_2267\":{}}"
+    },
+    {
         "id": "4248592e2f19e827",
         "type": "function",
         "z": "a71bd259225eb477",
@@ -711,7 +958,7 @@
         "passthroughField": "payload",
         "inputMsgField": "payload",
         "rounded": false,
-        "useThemeColors": true,
+        "useThemeColors": false,
         "hideSelectedLabel": false,
         "multilineLabel": false,
         "passThrough": "change",
@@ -722,13 +969,13 @@
                 "label": "PID",
                 "value": "onoff:off",
                 "valueType": "str",
-                "color": "#009933"
+                "color": "#006b99"
             },
             {
                 "label": "ON-OFF",
                 "value": "onoff:on",
                 "valueType": "str",
-                "color": "#999999"
+                "color": "#ec0909"
             }
         ],
         "topic": "",
@@ -1336,146 +1583,5 @@
         "x": 930,
         "y": 100,
         "wires": []
-    },
-    {
-        "id": "69cfb1630f26dcc3",
-        "type": "ui_spacer",
-        "z": "a71bd259225eb477",
-        "name": "spacer",
-        "group": "9107930fe226893c",
-        "order": 2,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "b5253ba5469cbac5",
-        "type": "ui_group",
-        "name": "Parámetros",
-        "tab": "b1621ce7ad4c9a13",
-        "order": 3,
-        "disp": false,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "2337440e676662b7",
-        "type": "ui_group",
-        "name": "Configurar",
-        "tab": "2d54b16bc1fdd21c",
-        "order": 1,
-        "disp": true,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "c9149d1e66f772f4",
-        "type": "ui_group",
-        "name": "Estado",
-        "tab": "b1621ce7ad4c9a13",
-        "order": 2,
-        "disp": false,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "4c0bed7b14068cd7",
-        "type": "ui_group",
-        "name": "Control",
-        "tab": "b1621ce7ad4c9a13",
-        "order": 2,
-        "disp": false,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "9107930fe226893c",
-        "type": "ui_group",
-        "name": "Gráficas",
-        "tab": "582906419b7b7ace",
-        "order": 1,
-        "disp": false,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "75c50b77e673af98",
-        "type": "ui_group",
-        "name": "Graficas al costado",
-        "tab": "582906419b7b7ace",
-        "order": 2,
-        "disp": false,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "4790fc4eabb03bf3",
-        "type": "ui_group",
-        "name": "Gráficos",
-        "tab": "2d54b16bc1fdd21c",
-        "order": 2,
-        "disp": true,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "417a12287c942f40",
-        "type": "ui_group",
-        "name": "grafico circular",
-        "tab": "2d54b16bc1fdd21c",
-        "order": 3,
-        "disp": false,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "2b5674be063c45cc",
-        "type": "websocket-listener",
-        "path": "/pepe",
-        "wholemsg": "false"
-    },
-    {
-        "id": "b1621ce7ad4c9a13",
-        "type": "ui_tab",
-        "name": "Control",
-        "icon": "dashboard",
-        "order": 1,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "2d54b16bc1fdd21c",
-        "type": "ui_tab",
-        "name": "Control Fino",
-        "icon": "dashboard",
-        "order": 3,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "582906419b7b7ace",
-        "type": "ui_tab",
-        "name": "Solo gráficas",
-        "icon": "dashboard",
-        "order": 4,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "a915936d7cd536dd",
-        "type": "global-config",
-        "env": [],
-        "modules": {
-            "node-red-dashboard": "3.6.6",
-            "@studiobox/node-red-contrib-ui-widget-thermometer": "0.7.7",
-            "node-red-contrib-ui-multistate-switch": "1.2.3"
-        }
     }
 ]
